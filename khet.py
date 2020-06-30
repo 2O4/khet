@@ -1,6 +1,7 @@
-import pygame
-from pygame import *
+# Khet game
+
 import time
+import pygame
 
 
 # ==================== INITIALISATION OF THE BOARD =======
@@ -17,7 +18,7 @@ def khetBoardIni(n, p):
 # =loading from save file=
 def loadBoard(file):  # load board from file
     khetBoard = khetBoardIni(8, 10)
-    map = open("saves\\" + file + ".txt", "r")
+    map = open("saves/" + file + ".txt", "r")
     for x in range(0, 80):
         k = map.readline()
         for y in k:
@@ -52,7 +53,7 @@ def loadBoard(file):  # load board from file
 
 # = saving the board =
 def saveBoard(khetBoard, file):
-    map = open("saves\\" + file + ".txt", "w")
+    map = open("saves/" + file + ".txt", "w")
     for x in range(0, 8):
         for y in range(
             0, 10
@@ -74,7 +75,7 @@ def saveBoard(khetBoard, file):
 def display(
     khetBoard, n, p
 ):  # we made a console display to debug, and also to have a better view of the khetBoard
-    print(" u\\v  ", sep="", end="")
+    print(" u/v  ", sep="", end="")
     for x in range(0, p):
         if x <= 9:
             print("[  ", x, "] ", sep="", end="")
@@ -827,7 +828,7 @@ def guiMenuEffectButton(khetWindow, pos, width, height):
 def guiMenuChangeMapPreview(khetWindow, board, width, height):  # TODO map preview image
     khetWindow.blit(
         pygame.transform.scale(
-            pygame.image.load("ressources\preview\\" + board + ".png"), (600, 410)
+            pygame.image.load("ressources/preview/" + board + ".png"), (600, 410)
         ),
         (int((width / 2) - 240), int((height / 2) - 380)),
     )
@@ -837,7 +838,7 @@ def guiMenuRules(khetWindow, width, height):
     page = 0
     khetWindow.blit(
         pygame.transform.scale(
-            pygame.image.load("ressources\\rules\page0.png"),
+            pygame.image.load("ressources/rules/page0.png"),
             (int((width) - 300), int((height) - 100)),
         ),
         (150, 50),
@@ -861,7 +862,7 @@ def guiMenuRules(khetWindow, width, height):
                         khetWindow.blit(
                             pygame.transform.scale(
                                 pygame.image.load(
-                                    "ressources\\rules\page" + str(page) + ".png"
+                                    "ressources/rules/page" + str(page) + ".png"
                                 ),
                                 (int((width) - 300), int((height) - 100)),
                             ),
@@ -872,7 +873,7 @@ def guiMenuRules(khetWindow, width, height):
                     khetWindow.blit(
                         pygame.transform.scale(
                             pygame.image.load(
-                                "ressources\\rules\page" + str(page) + ".png"
+                                "ressources/rules/page" + str(page) + ".png"
                             ),
                             (int((width) - 300), int((height) - 100)),
                         ),
@@ -1360,7 +1361,7 @@ def guiDrawTile(
     imagesize = (
         96,
         96,
-    )  # 96x96 pour une résolution de 1600x900 et 116x116 pour du HD 1920x1080, nous avons opté pour du 1600x900 afin que la fenêtre rentre sur l'écran sans mode plein ecran
+    )
     listpawn = ["sphinx", "pharaoh", "scarab", "anubis", "pyramid"]
     listcolor = ["silver", "red"]
     for i in range(1, 3):
@@ -1370,7 +1371,7 @@ def guiDrawTile(
                     pygame.transform.rotate(
                         pygame.transform.scale(
                             pygame.image.load(
-                                "ressources/Image_piece/"
+                                "ressources/image_piece/"
                                 + j
                                 + "_"
                                 + listcolor[i - 1]
